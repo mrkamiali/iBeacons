@@ -9,13 +9,13 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-class Myadapter extends BaseAdapter {
+class BeaconListAdapter extends BaseAdapter {
 
     private final LayoutInflater inflater;
     private Context context;
     private ArrayList<MainActivity.ModelClass> arrayList;
 
-    public Myadapter(Context context, ArrayList<MainActivity.ModelClass> arrayList) {
+    public BeaconListAdapter(Context context, ArrayList<MainActivity.ModelClass> arrayList) {
         this.context = context;
         this.arrayList = arrayList;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

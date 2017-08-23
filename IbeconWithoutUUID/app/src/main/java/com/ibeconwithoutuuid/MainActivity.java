@@ -8,8 +8,6 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -29,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean isScanning = false;
     private ArrayList<ModelClass> beconList;
     private ModelClass modelClass;
-    private Myadapter myadapter;
+    private BeaconListAdapter beaconListAdapter;
 
 
     // ------------------------------------------------------------------------
@@ -43,8 +41,8 @@ public class MainActivity extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.listView);
         beconList = new ArrayList<>();
-        myadapter = new Myadapter(this, beconList);
-        listView.setAdapter(myadapter);
+        beaconListAdapter = new BeaconListAdapter(this, beconList);
+        listView.setAdapter(beaconListAdapter);
 
         // init BLE
         btManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
@@ -123,13 +121,13 @@ public class MainActivity extends AppCompatActivity {
                     if (beconList.size() != 0) {
                         if (checkUUIDavailable(uuid, beconList)) {
                             beconList.add(modelClass);
-                            myadapter.notifyDataSetChanged();
+                            beaconListAdapter.notifyDataSetChanged();
 
                             Log.d("", "listSize " + beconList.size());
                         }
                     } else {
                         beconList.add(modelClass);
-                        myadapter.notifyDataSetChanged();
+                        beaconListAdapter.notifyDataSetChanged();
                     }
                 }
 
